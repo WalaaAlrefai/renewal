@@ -155,7 +155,7 @@ time.sleep(5)
 #         option.click()
 #         break
 
-reason_dropdown =  WebDriverWait(driver, 50).until(
+reason_dropdown =  WebDriverWait(driver,10).until(
     EC.visibility_of_element_located((By.ID, "694.Passport.Step3PassportRenewal.dropDown3.235_lit_419"))
 )
 time.sleep(5)
