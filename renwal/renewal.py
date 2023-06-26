@@ -18,27 +18,51 @@ with sync_playwright() as p:
     page.click('button[data-filter=".FamilyBooks"]') # button دفاتر العائلة
     d=page.inner_html('div.service.sub-service.mix.FamilyBooks')
     soup=BeautifulSoup(d,'html.parser')
-    result=soup.find_all('h4',string='ﺔﻠﺋﺎﻋ ﺮﺘﻓﺩ ﻒﻟﺎﺗ ﻝﺪﺑ') 
+    result=soup.find('h4',string='ﺔﻠﺋﺎﻋ ﺮﺘﻓﺩ ﻒﻟﺎﺗ ﻝﺪﺑ')
     print(11111111111,result)
     n=soup.text.strip()
+    print(12112212212,n)
     x=reshape(n)
 
     print(22222222222,x[::-1])
    
     # html2 = page.inner_html('h4')
     # print(c)
-
-    page.click('div.service.sub-service.mix.FamilyBooks')
-    b=page.inner_html('#CKEditorForMendix_widget_CKEditorViewerForMendix_0')
+    if n == 'بدل تالف دفتر عائلة':
+        page.click('div.service.sub-service.mix.FamilyBooks')
+        b=page.inner_html('#CKEditorForMendix_widget_CKEditorViewerForMendix_0')
     # soup1=BeautifulSoup(b,'html.parser')
     # result1=soup1.find_all('div')
-    print(33333333333,b[::-1])
+        print(33333333333,b[::-1])
+        
+        page.click('button.btn.mx-button.mx-name-actionButton9.fa.Next.mobilebtn.btn-default')
+        c=page.inner_html('div.mx-name-layoutGrid6.mx-layoutgrid.mx-layoutgrid-fluid') 
+        print(44444444444,c) ####
+        f=page.inner_html('div.mx-name-textBox11.lostpassfirstname.mx-textbox.form-group.no-columns')
+        # g=page.input_value('div.mx-name-textBox11.lostpassfirstname.mx-textbox.form-group.no-columns')
+        print(55555555555,f)
+        # print(55555555555,g)
+        # page.fill('input#1000.Booklet.Step1FamilyBookletDamage.textBox20.336_kel_75.form-control','224891')
+        # page.fill('select#1000.Booklet.Step1FamilyBookletDamage.dropDown5.341_kel_76.form-control',value='لا')
+        input_selector = '#1000.Booklet.Step1FamilyBookletDamage.textBox20.336_btb_75'  # Replace with the appropriate selector for the input field
+        input_element = page.wait_for_selector(input_selector)
+        input_element.fill('224891')
+
+
+        select_selector = '#1000.Booklet.Step1FamilyBookletDamage.dropDown5.341_kel_76.form-control'  # Replace with the appropriate selector for the select field
+        select_element = page.select_option(select_selector, value='لا')
+
+
+
+
+    else:
+        print('error')
     # print(111111111,page.inner_html('div.mx-name-container2.footer-btn'))
-    page.click('button.btn.mx-button.mx-name-actionButton9.fa.Next.mobilebtn.btn-default')
+    # page.click('button.btn.mx-button.mx-name-actionButton9.fa.Next.mobilebtn.btn-default') ####
     
-    c=page.inner_html('div.mx-name-layoutGrid6.mx-layoutgrid.mx-layoutgrid-fluid')
-    print(44444444444,c)
-    f=page.inner_html('div.mx-name-textBox11.lostpassfirstname.mx-textbox.form-group.no-columns')
+    # c=page.inner_html('div.mx-name-layoutGrid6.mx-layoutgrid.mx-layoutgrid-fluid') ####
+    # print(44444444444,c) ####
+    # f=page.inner_html('div.mx-name-textBox11.lostpassfirstname.mx-textbox.form-group.no-columns')####
     # print(3333333333,f)
     
     # soup=BeautifulSoup(c,'html.parser')
