@@ -29,37 +29,42 @@ def run_bot(user_nat_no, persone_card_no):
     time.sleep(5)
     try :
 
-        compititive_ranking = wait.until(EC.presence_of_element_located((By.ID, 'ContentPlaceHolder1_EmploymentData1_GridCOMP_DXMainTable')))
+        
+        info_element = driver.find_element(By.XPATH, '//*[@id="ContentPlaceHolder1_EmploymentData1_GridCOMP_DXMainTable"]')
+        info_screenshot = info_element.screenshot_as_png
+        with open('info_screenshot.png', 'wb') as file:
+            file.write(info_screenshot)
+            
+        # compititive_ranking = wait.until(EC.presence_of_element_located((By.ID, 'ContentPlaceHolder1_EmploymentData1_GridCOMP_DXMainTable')))
+        # rows = compititive_ranking.find_elements(By.TAG_NAME, 'tr')
 
-        rows = compititive_ranking.find_elements(By.TAG_NAME, 'tr')
+        # header_printed = False
 
-        header_printed = False
-
-        for i, row in enumerate(rows):
-            if i == 0:
-                continue  # Skip the header row
+        # for i, row in enumerate(rows):
+        #     if i == 0:
+        #         continue  # Skip the header row
           
-            columns = row.find_elements(By.TAG_NAME, 'td')
-            for column in columns:
-                if column.text == 'المؤهل العلمي':
-                    if not header_printed:
-                        res3 = wait.until(EC.presence_of_element_located((By.ID, 'ContentPlaceHolder1_EmploymentData1_GridCOMP_DXHeadersRow0')))
-                        res3_text = res3.text
-                        reshaped_text3 = reshape(res3_text)
-                        display_text3 = get_display(reshaped_text3)
-                        print(display_text3)
-                        header_printed = True
+        #     columns = row.find_elements(By.TAG_NAME, 'td')
+        #     for column in columns:
+        #         if column.text == 'المؤهل العلمي':
+        #             if not header_printed:
+        #                 res3 = wait.until(EC.presence_of_element_located((By.ID, 'ContentPlaceHolder1_EmploymentData1_GridCOMP_DXHeadersRow0')))
+        #                 res3_text = res3.text
+        #                 reshaped_text3 = reshape(res3_text)
+        #                 display_text3 = get_display(reshaped_text3)
+        #                 print(display_text3)
+        #                 header_printed = True
  
-                    res = wait.until(EC.presence_of_element_located((By.ID, 'ContentPlaceHolder1_EmploymentData1_GridCOMP_DXDataRow0')))
-                    res_text = res.text
-                    reshaped_text = reshape(res_text)
-                    display_text = get_display(reshaped_text)
-                    lst_text = display_text.split(" ")
-                    if len(lst_text) % 2 != 0:
-                        print("{:<30}{:<10}".format("", lst_text[-1]))
-                    for j in reversed(range(0, len(lst_text) - 1, 2)):
-                        print("{:<30}{:<10}{}".format("", lst_text[j], lst_text[j + 1]))
-                    break  # Exit the loop after processing the first row
+        #             res = wait.until(EC.presence_of_element_located((By.ID, 'ContentPlaceHolder1_EmploymentData1_GridCOMP_DXDataRow0')))
+        #             res_text = res.text
+        #             reshaped_text = reshape(res_text)
+        #             display_text = get_display(reshaped_text)
+        #             lst_text = display_text.split(" ")
+        #             if len(lst_text) % 2 != 0:
+        #                 print("{:<30}{:<10}".format("", lst_text[-1]))
+        #             for j in reversed(range(0, len(lst_text) - 1, 2)):
+        #                 print("{:<30}{:<10}{}".format("", lst_text[j], lst_text[j + 1]))
+        #             break  # Exit the loop after processing the first row
     except :
         
         error_element = WebDriverWait(driver, 10).until(
