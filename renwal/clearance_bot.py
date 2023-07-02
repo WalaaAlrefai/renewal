@@ -167,8 +167,9 @@ wait = WebDriverWait(driver, 50)
 
 # Get user input
 user_nat_no = input("Enter User Nat No: ")
-persone_card_no = input("Enter Persone Card No: ")
-user_phone_no = input("Enter User Phone No: ")
+persone_card_no = input("Enter Registration No: ")
+
+# print(type(user_phone_no))
 
 radio_button = wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@value='1']")))
 radio_button.click()
@@ -199,6 +200,8 @@ try :
 
     radio_button3 = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@value='63']")))
     radio_button3.click()
+    
+    user_phone_no = input("Enter User Phone No: ")
 
     user_phone_no_input_field = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[name="ctl00$ContentPlaceHolder1$txt_owner_phone"]')))
     user_phone_no_input_field.clear()
