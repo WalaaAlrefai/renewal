@@ -1,11 +1,3 @@
-# from selenium import webdriver
-# from selenium.webdriver.common.by import By
-
-# url='https://eservices.cspd.gov.jo/index-rtl.html'
-
-# driver = webdriver.Firefox()
-# driver.get(url)
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -47,10 +39,8 @@ button.click()
 
 element_id="ServicesMenu_widget_ServicesMenu_0"
 element = wait.until(EC.visibility_of_element_located((By.ID, element_id)))
-# child_elements =element.find_elements(By.CSS_SELECTOR, "h4")
 child_elements = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "h4")))
 
-# print(child_elements)
 target_text='خدمة تجديد جواز السفر الدائم'
 for i in child_elements :
         if (i.text == target_text):
@@ -162,6 +152,8 @@ time.sleep(5)
 
 select_reason = Select(reason_dropdown)
 provided_text = "تجديد منتهي الصلاحية "
+
+time.sleep(5)
 
 for option in select_reason.options:
     if provided_text in option.text:
